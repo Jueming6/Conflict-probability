@@ -34,7 +34,7 @@ class Bound:
 
     def uaverror(self):
         np.random.seed()
-        self.epGPS = np.random.uniform(-1.5, 1.5)
+        self.epGPS = np.random.uniform(0, 1.5)
         self.evuav = np.random.normal(0, 0.05 * self.vuav)
         self.ea = np.random.normal(0, 0.05 * self.a)
         self.ett = np.random.normal(0, 0.05 * self.tt)
@@ -46,7 +46,7 @@ class Bound:
         self.evuav = np.random.normal(0, 0.05 * self.vuav)
         self.a = np.random.uniform(3.2, 6.7)
         self.tt = np.random.uniform(0, 2)
-        self.epGPS = np.random.uniform(-1.5, 1.5)
+        self.epGPS = np.random.uniform(0, 1.5)
 
         self.ea = np.random.normal(0, 0.05 * self.a)
         self.ett = np.random.normal(0, 0.05 * self.tt)
@@ -71,7 +71,7 @@ class Bound:
         self.ea = np.random.normal(0, 0.05 * self.a)
         self.ett = np.random.normal(0, 0.05 * self.tt)
 
-        self.epGPS = np.random.uniform(-1.5, 1.5)
+        self.epGPS = np.random.uniform(0, 1.5)
 
     ######################### calculate size (same in 3 case)#######################################################################
     def size(self):
@@ -543,7 +543,7 @@ class orides:
 #######################################################################################################################################################################################
 if __name__ == '__main__':
 
-    N = 100000
+    N = 90000
     Cpro = 0
     Cdyn = 0
     Csta = 0
