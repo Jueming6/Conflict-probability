@@ -177,7 +177,8 @@ class Conflict:
         self.refrect = [self.refp1, self.refp2, self.refp3, self.refp4]
 
 
-        self.refvel = self.move.uavvvec + self.move.vecwind - self.ref.uavvvec - self.ref.vecwind
+        #self.refvel = self.move.uavvvec + self.move.vecwind - self.ref.uavvvec - self.ref.vecwind
+        self.refvel = self.move.valong / np.linalg.norm(self.move.uavdir) * self.move.uavdir - self.ref.valong / np.linalg.norm(self.ref.uavdir) * self.ref.uavdir
         self.movecir1 = self.ori2
         self.mover = self.move.lp
         self.movecir2 = self.movecir1 + np.array(self.refvel) * self.systime + self.move.lh / np.linalg.norm(self.refvel) * np.array(self.refvel)
@@ -543,7 +544,7 @@ class orides:
 #######################################################################################################################################################################################
 if __name__ == '__main__':
 
-    N = 90000
+    N = 100000
     Cpro = 0
     Cdyn = 0
     Csta = 0
@@ -572,7 +573,7 @@ if __name__ == '__main__':
                 'des': ccc2.des}
 
         vwind0 = 3.2 * np.random.weibull(2.2)
-        alphaw0 = np.random.uniform(0, 2 * np.pi)
+        alphaw0 = np.random.uniform(0, 2*np.pi) #2*
 
         #t1=time.time()
         cr1 = Conflict(cfg1, cfg2, vwind0, alphaw0)
@@ -601,8 +602,8 @@ if __name__ == '__main__':
         # dyn = dyn + Cdyn
         # pro = pro + Cpro
     #print results
-    print np.sum(results, axis=0)
-    print t2-t1
+    print (np.sum(results, axis=0))
+    print (t2-t1)
 
     #print Csta
     #print Cdyn
